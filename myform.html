@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> 05211942000016 - Sausan Aulia Nur Azmy</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script>
+        $(document).ready(function () {
+            $('.error').hide(); // to hide a class named error
+            $('.userid').blur(function () { //To blur the class userid. The blur event occurs when class userid loses focus.
+                data = $('.userid').val(); //returns or sets the value attribute of class userid.
+                var len = data.length; // to return the number of character of variable data that is inputted  
+                if (len < 1) { //the code below will be executed if variable len is less than 1
+                    $('.userid').next().show(); // to show the class named userid
+                    $('.password').attr('disabled', true); // to disable class named password
+                    $('.confpass').attr('disabled', true); // to disable class named confpass
+                }
+                else { // the code below will be executed if the condition len < 1 is false
+                    $('.userid').next().hide(); // to hide the class userid
+                    $('.password').removeAttr('disabled'); //to remove disabled attribute from password class
+                    $('.confpass').removeAttr('disabled'); // to remove disabled attribute from confpass class
+                }
+            });
+            $('.password').blur(function () { //to blur class password. the blur event occurs when class password loses focus.
+                data = $('.password').val(); //returns or sets the value attribute of class password.
+                var len = data.length; //to return the number of character of variable data that is inputted  
+                if (len < 1) { //the code below will be executed if variable len is less than 1
+                    $('.password').next().show(); // to show class named password
+                    $('.confpass').attr('disabled', true); // to disable class named confpass
+                }
+                else { // the code below will be executed if the condition len < 1 is false
+                    $('.password').next().hide(); // to hide class password
+                    $('.confpass').removeAttr('disabled'); // to remove disabled attribute from confpass class
+                }
+            });
+            $('.confpass').blur(function () { //to blur class confpass. the blur event occurs when class confpass loses focus.
+                if ($('.password').val() != $('.confpass').val()) {
+                    $('.confpass').next().show();
+                }
+                else { // the code below will be executed if the condition len < 1 is false
+                    $('.confpass').next().hide();
+                }
+            });
+        });
+
+    </script>
+</head>
+<style>
+    style.css .label {
+        float: left;
+        width: 120px;
+    }
+
+    .error {
+        color: red;
+        padding-left: 10px;
+    }
+
+    .submit {
+        margin-left: 125px;
+        margin-top: 10px;
+    }
+
+    div {
+        padding: 5px;
+    }
+</style>
+
+<body>
+    <h1> Aulili's Confirmation Order </h1>
+    <br>
+    <form>
+        <div>
+            <span class="label"> Goods Type </span>
+            <input type="text" class="userid" name="userid" />
+            <span class="error">Goods type cannot be blank</span>
+        </div>
+
+        <div>
+            <span class="label"> Amount </span>
+            <input type="number" class="password" name="password" />
+            <span class="error"> Amount cannot be blank </span>
+        </div>
+
+        <div>
+            <span class="label">Confirm Amount </span>
+            <input type="number" class="confpass" name="confpass" />
+            <span class="error"> Amount and Confirm Amount don't match</span>
+        </div>
+    </form>
+</body>
+
+</html>
